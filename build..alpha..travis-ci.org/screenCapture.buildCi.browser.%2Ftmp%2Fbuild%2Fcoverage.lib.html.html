@@ -1,0 +1,1012 @@
+<html lang="en"><head>
+    <title>Code coverage report for node-npmtest-run-headless-chromium/node_modules/run-headless-chromium/run-headless-chromium.js</title>
+    <meta charset="utf-8">
+    <style>
+        body, html {
+            margin:0; padding: 0;
+        }
+        body {
+            font-family: Arial, Helvetica;
+            font-size: 10pt;
+        }
+        div.header, div.footer {
+            background: #eee;
+            padding: 1em;
+        }
+        div.header {
+            height: 160px;
+            padding: 0 1em 0 1em;
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            border-bottom: 1px solid #666;
+            width: 100%;
+        }
+        div.footer {
+            border-top: 1px solid #666;
+        }
+        div.body {
+            margin-top: 170px;
+        }
+        div.meta {
+            font-size: 90%;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-weight: normal;
+        }
+        h1 {
+            font-size: 12pt;
+        }
+        h2 {
+            font-size: 10pt;
+        }
+        pre {
+            font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            tab-size: 2;
+        }
+
+        div.path { font-size: 110%; }
+        div.path a:link, div.path a:visited { color: #000; }
+        table.coverage { border-collapse: collapse; margin:0; padding: 0 }
+
+        table.coverage td {
+            margin: 0;
+            padding: 0;
+            color: #111;
+            vertical-align: top;
+        }
+        table.coverage td.line-count {
+            width: 50px;
+            text-align: right;
+            padding-right: 5px;
+        }
+        table.coverage td.line-coverage {
+            color: #777 !important;
+            text-align: right;
+            border-left: 1px solid #666;
+            border-right: 1px solid #666;
+        }
+
+        table.coverage td.text {
+        }
+
+        table.coverage td span.cline-any {
+            display: inline-block;
+            padding: 0 5px;
+            width: 40px;
+        }
+        table.coverage td span.cline-neutral {
+            background: #eee;
+        }
+        table.coverage td span.cline-yes {
+            background: #b5d592;
+            color: #999;
+        }
+        table.coverage td span.cline-no {
+            background: #fc8c84;
+        }
+
+        .cstat-yes { color: #111; }
+        .cstat-no { background: #fc8c84; color: #111; }
+        .fstat-no { background: #ffc520; color: #111 !important; }
+        .cbranch-no { background:  yellow !important; color: #111; }
+
+        .cstat-skip { background: #ddd; color: #111; }
+        .fstat-skip { background: #ddd; color: #111 !important; }
+        .cbranch-skip { background: #ddd !important; color: #111; }
+
+        .missing-if-branch {
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: black;
+            color: yellow;
+        }
+
+        .skip-if-branch {
+            display: none;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: #ccc;
+            color: white;
+        }
+
+        .missing-if-branch .typ, .skip-if-branch .typ {
+            color: inherit !important;
+        }
+
+        .entity, .metric { font-weight: bold; }
+        .metric { display: inline-block; border: 1px solid #333; padding: 0.3em; background: white; }
+        .metric small { font-size: 80%; font-weight: normal; color: #666; }
+
+        div.coverage-summary table { border-collapse: collapse; margin: 3em; font-size: 110%; }
+        div.coverage-summary td, div.coverage-summary table  th { margin: 0; padding: 0.25em 1em; border-top: 1px solid #666; border-bottom: 1px solid #666; }
+        div.coverage-summary th { text-align: left; border: 1px solid #666; background: #eee; font-weight: normal; }
+        div.coverage-summary th.file { border-right: none !important; }
+        div.coverage-summary th.pic { border-left: none !important; text-align: right; }
+        div.coverage-summary th.pct { border-right: none !important; }
+        div.coverage-summary th.abs { border-left: none !important; text-align: right; }
+        div.coverage-summary td.pct { text-align: right; border-left: 1px solid #666; }
+        div.coverage-summary td.abs { text-align: right; font-size: 90%; color: #444; border-right: 1px solid #666; }
+        div.coverage-summary td.file { text-align: right; border-left: 1px solid #666; white-space: nowrap;  }
+        div.coverage-summary td.pic { min-width: 120px !important;  }
+        div.coverage-summary a:link { color: #000; }
+        div.coverage-summary a:visited { color: #333; }
+        div.coverage-summary tfoot td { border-top: 1px solid #666; }
+
+        div.coverage-summary .yui3-datatable-sort-indicator, div.coverage-summary .dummy-sort-indicator {
+            height: 10px;
+            width: 7px;
+            display: inline-block;
+            margin-left: 0.5em;
+        }
+        div.coverage-summary .yui3-datatable-sort-indicator {
+            background: no-repeat scroll 0 0 transparent;
+        }
+        div.coverage-summary .yui3-datatable-sorted .yui3-datatable-sort-indicator {
+            background-position: 0 -20px;
+        }
+        div.coverage-summary .yui3-datatable-sorted-desc .yui3-datatable-sort-indicator {
+            background-position: 0 -10px;
+        }
+
+        .high { background: #b5d592 !important; }
+        .medium { background: #ffe87c !important; }
+        .low { background: #fc8c84 !important; }
+
+        span.cover-fill, span.cover-empty {
+            display:inline-block;
+            border:1px solid #444;
+            background: white;
+            height: 12px;
+        }
+        span.cover-fill {
+            background: #ccc;
+            border-right: 1px solid #444;
+        }
+        span.cover-empty {
+            background: white;
+            border-left: none;
+        }
+        span.cover-full {
+            border-right: none !important;
+        }
+        pre.prettyprint {
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .com { color: #999 !important; }
+        .ignore-none { color: #999; font-weight: normal; }
+
+    </style>
+</head>
+<body>
+<div class="header medium">
+    <h1 style="font-weight: bold;">
+        <a href="https://github.com/npmtest/node-npmtest-run-headless-chromium">npmtest-run-headless-chromium (v0.0.1)</a>
+    </h1>
+    <h1>Code coverage report for <span class="entity">node-npmtest-run-headless-chromium/node_modules/run-headless-chromium/run-headless-chromium.js</span></h1>
+    <h2>
+        
+        Statements: <span class="metric">72.58% <small>(90 / 124)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Branches: <span class="metric">48.08% <small>(25 / 52)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Functions: <span class="metric">60% <small>(9 / 15)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Lines: <span class="metric">72.58% <small>(90 / 124)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> » <a href="index.html">node-npmtest-run-headless-chromium/node_modules/run-headless-chromium/</a> » run-headless-chromium.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tbody><tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">282</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">282</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">282</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">533</span>
+<span class="cline-any cline-yes">533</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">126</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">126</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">126</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">407</span>
+<span class="cline-any cline-yes">407</span>
+<span class="cline-any cline-yes">407</span>
+<span class="cline-any cline-yes">407</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">407</span>
+<span class="cline-any cline-yes">407</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">405</span>
+<span class="cline-any cline-yes">405</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">//#!/usr/bin/env node
+'use strict';
+var os = require('os');
+var path = require('path');
+var rmraf = require('rimraf');
+var spawn = require('child_process').spawn;
+var whichSync = require('which').sync;
+var Xvfb = require('xvfb');
+&nbsp;
+// Chromium's output line format is defined as
+// [pid:tid:MMDD/hhmmss:tickcount:severity:source(lineno)] LOGMESSAGEHERE
+// pid, tid, tickcount are optional. For the console, source is always "CONSOLE".
+// http://src.chromium.org/viewvc/chrome/trunk/src/base/logging.cc?revision=265460&amp;view=markup#l674
+// In Chrome 56, the format changed (milliseconds were added in the timestamp, and the timestamp is optional).
+// https://chromium.googlesource.com/chromium/src/+/dfb10e743132bac81702c2a3685f4c7c782d368f/base/logging.cc#765
+var r_logMessageFormat = new RegExp(
+    '^\\[' +
+    // pid and tid are optional
+    '(?:\\d+:){0,2}' +
+    // We don't care about the date
+    '(?:\\d{4}/\\d{6}(?:\\.(?:\\d{3}){1,2})?:)?' +
+    // tickcount is optional
+    '(?:\\d+:)?' +
+    // Log severity = $1
+    '(INFO|WARNING|ERROR|ERROR_REPORT|FATAL|VERBOSE\\d*|UNKNOWN)' +
+    // source = $2 and line number = $3
+    ':(.*?)\\((\\d+)\\)' +
+    '\\] ' +
+    // Rest of line = $4
+    '(.*)$'
+);
+// Which non-console messages should also be printed to stdout?
+// By default, only errors are forwarded.
+var r_logMessageSeverity = 'LOG_CR_VERBOSITY' in process.env ?
+<span class="branch-0 cbranch-no" title="branch not covered">                         new RegExp(process.env.LOG_CR_VERBOSITY) </span>:
+                         /ERROR|ERROR_REPORT|FATAL/; 
+// Ignore error messages from Chromium.
+// By default, all error messages from Chrome are printed as well.
+// If you want to hide all messages, set LOG_CR_HIDE_PATTERN=.
+var r_logMessageIgnore = 'LOG_CR_HIDE_PATTERN' in process.env ? 
+<span class="branch-0 cbranch-no" title="branch not covered">                         new RegExp(process.env.LOG_CR_HIDE_PATTERN, 'i') </span>:
+                         /kwallet/i;
+&nbsp;
+// Patterns to be stripped from console messages.
+var r_logMessageConsoleStart = /^"/;
+var r_logMessageConsoleEnd = /", source: .*? \(\d+\)$/;
+&nbsp;
+// Magic byte sequence at the end of a console message to signal that the
+// line has not ended yet.
+var NOT_END_OF_LINE = '\x03\b';
+&nbsp;
+&nbsp;
+// Locate Chromium and determine flags to be used..
+var chromiumBinary;
+[
+    // Allow override
+    process.env.CHROMIUM_EXE_PATH,
+    // Linux
+    'chromium',
+    'google-chrome',
+    'chromium-browser',
+    // OS X
+    '/Applications/Chromium.app/Contents/MacOS/Chromium',
+    '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+].some(function(binary) {
+    try {
+        if (binary) {
+            whichSync(binary);
+            chromiumBinary = binary;
+            return true;
+        }
+    } catch (e) {
+    }
+});
+&nbsp;
+<span class="missing-if-branch" title="if path not taken">I</span>if (!chromiumBinary) {
+<span class="cstat-no" title="statement not covered">    console.error('Cannot find Chromium/Chrome executable. Please install it, or');</span>
+<span class="cstat-no" title="statement not covered">    console.error('put its location in the CHROMIUM_EXE_PATH environment variable.');</span>
+<span class="cstat-no" title="statement not covered">    process.exit(-1);</span>
+}
+&nbsp;
+try {
+    whichSync('Xvfb');
+} catch (e) {
+<span class="cstat-no" title="statement not covered">    console.error('Xvfb not found. Please install xvfb before trying again.');</span>
+<span class="cstat-no" title="statement not covered">    process.exit(-1);</span>
+}
+&nbsp;
+var chromiumFlags = process.argv.slice(2);
+var userDataDir = path.join(os.tmpdir(), 'chromium_headless_user_data_directory' + Math.random());
+(function checkFlagsToBePassedToChromium() {
+    <span class="missing-if-branch" title="else path not taken">E</span>if (!chromiumFlags.length) {
+        console.log('Usage: ' + process.argv[1].split('/').pop() + ' flags passed to Chromium');
+        console.log('Require at least one flag');
+        process.exit(-1);
+    }
+    <span class="missing-if-branch" title="else path not taken">E</span>if (!hasFlag('user-data-dir')) {
+        chromiumFlags.push('--no-first-run');
+        chromiumFlags.push('--user-data-dir=' + userDataDir);
+    }
+    <span class="missing-if-branch" title="else path not taken">E</span>if (!hasFlag('allow-file-access-from-files')) {
+        chromiumFlags.push('--allow-file-access-from-files');
+    }
+    // Direct error messages to stderr. Use verbosity at minimum 1 to catch
+    // JavaScript console messages.
+    chromiumFlags.push('--enable-logging=stderr');
+    <span class="missing-if-branch" title="else path not taken">E</span>if (!hasFlag('v')) {
+        chromiumFlags.push('--v=1');
+    }
+&nbsp;
+    function hasFlag(flagname) {
+        return process.argv.some(function(flag) {
+            flag = flag.split('=', 1)[0];
+            return flag == '--' + flagname;
+        });
+    }
+})();
+&nbsp;
+&nbsp;
+// Start the virtual X Framebuffer
+var xvfb = new Xvfb({
+    silent: true,
+    // Use the same parameters as used by Chromium's test bots:
+    // https://src.chromium.org/viewvc/chrome/trunk/tools/build/scripts/slave/xvfb.py?revision=233700&amp;#l75
+    xvfb_args: [
+        '-screen',
+        '0',
+        '1024x768x24',
+        '-ac'
+    ]
+});
+xvfb.start(function(err, xvfbProcess) {
+    <span class="missing-if-branch" title="if path not taken">I</span>if (err) {
+<span class="cstat-no" title="statement not covered">        console.error('Failed to start Xvfb: ' + err);</span>
+<span class="cstat-no" title="statement not covered">        process.exit(-1);</span>
+<span class="cstat-no" title="statement not covered">        return;</span>
+    }
+&nbsp;
+    console.log('Starting Chromium...');
+&nbsp;
+    // Let's start Chromium...
+    var crProcess = spawn(chromiumBinary, chromiumFlags);
+    var crProcessExited = false;
+    crProcess.on('exit', <span class="fstat-no" title="function not covered">function() {</span>
+<span class="cstat-no" title="statement not covered">        crProcessExited = true;</span>
+<span class="cstat-no" title="statement not covered">        quitXvfbAndChromium(-1);</span>
+    });
+    process.once('SIGINT', <span class="fstat-no" title="function not covered">function() {</span>
+<span class="cstat-no" title="statement not covered">        if (!crProcessExited) {</span>
+            // This should trigger the 'exit' event on crProcess, which in turn
+            // cleans up Xvfb.
+<span class="cstat-no" title="statement not covered">            crProcess.kill();</span>
+        }
+        // If `crProcessExited` is true and we received the event, then we
+        // are still in the process of exiting Xvfb. So ignore the signal.
+    });
+    _toggle_crProcessEvents(true);
+    function _toggle_crProcessEvents(register) {
+        var methodName = register ? 'on' : <span class="branch-1 cbranch-no" title="branch not covered">'removeListener';</span>
+        crProcess.stdout[methodName]('data', handleOutput);
+        crProcess.stderr[methodName]('data', handleOutput);
+        crProcess.stdout[methodName]('end', flushBuffer);
+        crProcess.stderr[methodName]('end', flushBuffer);
+    }
+&nbsp;
+    var buffer = '';
+    function handleOutput(chunk) {
+        var lines = (buffer + chunk).split('\n');
+        // The last character must be a newline. If it is not a newline, then the
+        // chunk is probably not complete, queue it for the next data event.
+        buffer = lines.pop();
+&nbsp;
+        // Parse and print all lines if needed.
+        lines.forEach(printLine);
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered">    function flushBuffer() {</span>
+<span class="cstat-no" title="statement not covered">        if (buffer) {</span>
+<span class="cstat-no" title="statement not covered">            printLine(buffer);</span>
+        }
+    }
+&nbsp;
+    function printJsConsoleMessage(msg) {
+        <span class="missing-if-branch" title="if path not taken">I</span>if (msg.slice(-NOT_END_OF_LINE.length) == NOT_END_OF_LINE) {
+<span class="cstat-no" title="statement not covered">            process.stdout.write(msg.slice(0, -NOT_END_OF_LINE.length));</span>
+        } else {
+            console.log(msg);
+        }
+    }
+&nbsp;
+    // Whether the last line was a message written to the JavaScript console.
+    var isJSConsole = false;
+    // Whether the last line is output from Chromium that is printed to stdout.
+    // True by default, so that output from e.g. --version is always printed.
+    var isAllowedOutput = true;
+    function printLine(line) {
+        var parsedline = r_logMessageFormat.exec(line);
+        if (!parsedline) {
+            // Continuation of last log message or end of line.
+            <span class="missing-if-branch" title="if path not taken">I</span>if (isJSConsole) {
+<span class="cstat-no" title="statement not covered">                line = line.replace(r_logMessageConsoleEnd, '');</span>
+<span class="cstat-no" title="statement not covered">                printJsConsoleMessage(line);</span>
+            } else <span class="missing-if-branch" title="if path not taken">I</span>if (isAllowedOutput &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered">!r_logMessageIgnore.test(line))</span> {
+<span class="cstat-no" title="statement not covered">                console.log(line);</span>
+            }
+            return;
+        }
+        var log_severity = parsedline[1];
+        var log_source = parsedline[2];
+        var log_lineno = parsedline[3];
+        var log_message = parsedline[4];
+&nbsp;
+        isJSConsole = log_source == 'CONSOLE';
+        if (isJSConsole) {
+            // Forward all JS console messages to stdout.
+            log_message = log_message.replace(r_logMessageConsoleStart, '');
+            log_message = log_message.replace(r_logMessageConsoleEnd, '');
+            printJsConsoleMessage(log_message);
+&nbsp;
+            <span class="missing-if-branch" title="else path not taken">E</span>if (log_severity == 'INFO') {
+                var completionMessage = /^All tests completed!(-?\d*)$/.exec(log_message);
+                <span class="missing-if-branch" title="if path not taken">I</span>if (completionMessage) {
+<span class="cstat-no" title="statement not covered">                    var exitCode = completionMessage[1] &amp; 0xFF;</span>
+<span class="cstat-no" title="statement not covered">                    quitXvfbAndChromium(exitCode);</span>
+                }
+            }
+        } else {
+            // Ignore non-JS console messages
+            // Ok, show Chrome errors if they appear, to prevent having failures and
+            // no debugging information at all.
+            isAllowedOutput = r_logMessageSeverity.test(log_severity) &amp;&amp; !r_logMessageIgnore.test(log_message);
+            if (isAllowedOutput) {
+                console.log(log_severity + ':' + log_source + '(' + log_lineno + '): ' + log_message);
+            }
+        }
+    }
+&nbsp;
+    var hasQuitChromium = false;
+<span class="fstat-no" title="function not covered">    function quitXvfbAndChromium(exitCode) {</span>
+<span class="cstat-no" title="statement not covered">        if (hasQuitChromium) {</span>
+<span class="cstat-no" title="statement not covered">            return;</span>
+        }
+<span class="cstat-no" title="statement not covered">        hasQuitChromium = true;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">        _toggle_crProcessEvents(false);</span>
+<span class="cstat-no" title="statement not covered">        xvfb.stop(<span class="fstat-no" title="function not covered">function(err) {</span></span>
+<span class="cstat-no" title="statement not covered">            if (err) {</span>
+<span class="cstat-no" title="statement not covered">                console.error('Failed to stop Xvfb: ' + err);</span>
+            }
+<span class="cstat-no" title="statement not covered">            if (!crProcessExited) {</span>
+<span class="cstat-no" title="statement not covered">                console.error('Chromium process was still alive. Sending SIGKILL...');</span>
+<span class="cstat-no" title="statement not covered">                crProcess.kill('SIGKILL');</span>
+            }
+<span class="cstat-no" title="statement not covered">            rmraf(userDataDir, <span class="fstat-no" title="function not covered">function(err) {</span></span>
+<span class="cstat-no" title="statement not covered">                if (err) {</span>
+<span class="cstat-no" title="statement not covered">                    console.error('Failed to remove ' + userDataDir + ': ' + err);</span>
+                }
+<span class="cstat-no" title="statement not covered">                process.exit(exitCode);</span>
+            });
+        });
+    }
+});
+&nbsp;
+&nbsp;</pre></td></tr>
+</tbody></table></pre>
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Sat Apr 22 2017 02:36:44 GMT+0000 (UTC)</div>
+</div>
+
+
+</body></html>
